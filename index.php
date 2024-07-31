@@ -1,0 +1,203 @@
+<?php
+ require_once("dbconn.php");
+ require_once("func.php");
+ require_once('include/session_config.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta charset="UTF-8">
+        <meta name="description" content="Free Web tutorials">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="yasser">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                crossorigin="anonymous"></script>
+        <!-- <script src="js/jquery-3.7.1.min.js"></script> -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="css/style_main.css">
+        <link rel="shortcut icon" href="image/sec.png">
+
+
+        <title><?php echo $title = "YASSER FBD" ?></title>
+
+    </head>
+  
+    <body>  
+        
+        <div class="nav-bar" id="nav-bar">
+            <a  class="myname">  yasser</a>
+            <nav class="nav-bar-i">
+                <a href="#about" > about me </a>
+                <a href="#project" > PROJECT </a>
+                <a href="#skills" > skills </a>
+                <a href="#contactme" id="cont" > contact me </a>
+                <a href="#home" class="active"> home </a>
+            </nav>
+
+        </div>
+        <button id="end" class="end"></button>
+
+        <section class="home" id="home">
+            <div class="home-content" id="home-content">
+                <div class="image-me">
+                    <h2 id='not' > Still learning </h2>
+                    <img src="image/me.jpg" alt="me" width="100px" id="login_img">
+                </div>   
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="me3">
+                <img src="image/me6.png" alt="me">
+                <span class="tran"></span>
+            </div>
+        </section>
+            
+        <section class="project" id="project">
+            <h3>MY PROJECT </h3>
+            <div class="mep">
+                <img src="image/me7.png" alt="me">
+                <span class="rot"></span>
+            </div>
+        </section>
+
+        <section class="skills" id="skills">
+            <div class="frontend">
+                <div class="javascript">
+                    <p>j<span class="dot">.</span><span class='s' id='s'>s</span></p>
+                </div>
+            <div class="css">
+                <p>css</p> 
+            </div>
+            <div class="html">
+                <p >html</p>
+            </div>
+            </div>
+            
+            <div class="backend">
+                <div class="mysql">
+                    <p>MYSQL</p>
+                </div>
+                <div class="python"> <p> python </p></div>
+                <div class="php">    <p> php  </p> </div>
+            </div>
+        </section>
+
+        <section class="contactme" id="contactme">
+           <div class="snd">
+
+                <form method="POST" action='index.php#contactme'>
+                   <?php include("error.php") ?>
+                    <input type="text" name="sub" id="sub" placeholder="subject" required>
+                    <input type="text" name='email' id="email" placeholder=" Enter your Email" autocomplete='on' required >
+                    <input type="text"  name="phone" id="phone" placeholder="YOUR PHONE" autocomplete="off" required>
+                    <textarea name="msg" id="msg" cols="30" rows="10"  placeholder="your msg" required></textarea >
+                    <input type="submit" value="submit" id="submit" name="submit">
+                </form>
+                <?php
+$sub;
+$email;
+$phone;
+$msg;
+//$date = date('m-d-Y h:i:s a');
+$date = date("Y-m-d H:i:s");
+$ip_address ;
+// echo $date;
+if(isset($_POST["submit"])){
+    $sub=$_POST["sub"];
+    $email=$_POST["email"];
+    $phone=$_POST["phone"];
+    $msg=$_POST["msg"];
+    $date_x = $date ;
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+  
+   if (isempty($sub,$email,$phone,$msg,$date_x,$ip_address,)!== false ){ 
+   header ("location: index.php?error=failed r empty");
+   #echo "u forget some field make sure u fill all idiot";
+    exit();
+  }
+    if(notemail($email)){
+        #echo "this is not valid email";
+        header("location: index.php?error=invalidusername");
+        exit();
+    }
+
+   
+   sndmsg($conn,$sub,$email,$phone,$msg,$date_x,$ip_address);
+   header("location: index.php?error=success");
+
+}
+  
+?>
+        
+            </div>
+        </section>
+        
+<footer class="footer">
+    <div class="connetion ">
+        <a class="facebook" href="#"><i class='bx bxl-facebook-circle'></i></a>
+        <a class="twitter" href="#"><i class='bx bxl-twitter'></i></a>
+        <a class="gmail" href="https://wwww.gmail.com/yasseremad556" target="_blank"><i class='bx bxl-gmail'></i></a>
+        <a class="github" href="https://github.com/axloma" target="_blank"><i class='bx bxl-github' ></i></a>
+        <a class="linkedin" href="https://www.linkedin.com/in/yasser-emad-07b886234/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+    </div>
+</footer>
+
+
+<button id="homex" class="up"></button>
+
+
+<script>
+//add scroll animtion "time to take to scroll"
+$(document).ready(function() {//code 
+$("#homex").click(function(){
+    var page_url = window.location.href ;
+    var page_id = page_url.substring(page_url.lastIndexOf('#') + 1); //GET SECTION NAME
+    $("html, body").animate(
+        { scrollTop: "0" }, 3000);    
+    console.log("scrolinganimition");
+    //console.log(ofs);
+    });
+
+//scroll to buttom slowaly
+$("#end").click(function(){
+    $("html, body").animate(
+        { scrollTop: $(document).height() }, 8000);    
+    console.log("scrolinganimition");
+    //console.log(ofs);
+   
+});
+$("#login").click(function(){
+    window.location.href = "msg.php";
+    alert("go to yasser");
+    console.log("Hi go");
+});
+});
+
+
+</script>
+<script src="js.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
