@@ -18,9 +18,9 @@ html{
     padding: 0;
     margin: 0;
     box-sizing:border-box;
-font-size: 2rem;
-font-family:Arial, Helvetica, sans-serif;
-overflow:visible;
+    font-size: 2rem;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow:visible;
 
 }
 body{
@@ -196,7 +196,7 @@ body{
 .nav-bar-i   a:hover::after
 {
 width: 100%;
-height: 2rem;
+height: 1rem;
 background-image:linear-gradient(to bottom right,rgb(48, 65, 212),rgb(146, 67, 71));
 }
 .nav-bar-i a.active::after{
@@ -285,20 +285,92 @@ section{
     background-color: var(--main-color);
     background-blend-mode: multiply;
 }
-.skills .frontend,.backend{ 
+
+.skills .frontend{ 
+    /* display: grid; */
+    /* grid-template-rows: repeat(3,1fr); */
     display: grid;
-    grid-template-rows: repeat(3,1fr);
+
+    grid-template-rows: minmax(1rem, max-content) repeat(auto-fill, 50px);
+
     position: relative;
     align-items: center;
     text-align: center;
 }
+.skills .frontend > *{
+    display:  grid;
+    position: relative;
+    box-shadow: 0 .5rem 1rem black;
+
+}
+.skills .backend{ 
+    display: grid;
+    position: relative;
+    /* grid-template-rows: repeat(8,1fr); */
+    /* grid-template-rows:minmax(10rem, max-content) repeat(auto-fill, 100px) 20% ; */
+    grid-template-rows: minmax(1rem, max-content) repeat(auto-fill, 50px);
+    /* position: relative; */
+    align-items: center;
+    text-align: center;
+    /* margin: 1rem; */
+    /* padding: 1rem; */
+    margin:0;
+    padding:0;
+    /* opacity: 40%; */
+    grid-gap:0;
+    grid-row-gap:0;
+    border-collapse:collapse;
+    /* box-shadow: 0 .5rem 1rem black; */
+
+
+}
+/* .skills .backend .mysql{
+    display: inline-block;
+    position: relative;
+    margin:0;
+    padding: 0;
+
+    grid-row:1/2 ;
+} */
+
+.skills .backend > *{
+    display:  grid;
+    position: relative;
+    /* background-color: rgb(248, 12, 12); */
+    /* opacity: 70%; */
+    /* display: grid; */
+    /* grid-template-rows:repeat(6,1fr) ; */
+    /* border: .2rem solid rgb(39, 17, 233) ; */
+    /* margin: 1rem; */
+    border-collapse:separate;
+    /* padding: 1rem; */
+    /* gap:3rem; */
+    margin:0;
+    padding:0;
+    grid-gap:0;
+    grid-row-gap: 0;
+    box-shadow: 0 .5rem 1rem black;
+    color: #0a82fa ;
+    /* font-family: 'Courier New', Courier, monospace; */
+
+}
+.backend p{
+    color: #d85125;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
 .skills .frontend .html ,.css,.javascript{
     position:relative;
     width: 100%;
     height: 100%;
     background-color: var(--main-color);
+    box-shadow: 0 .5rem 1rem black;
 
 }
+
 .skills .frontend .html{
     position:relative;
     background-color:transparent;
@@ -307,9 +379,10 @@ section{
     letter-spacing: 1rem;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color:burlywood;
-    font-size:2rem;
+    font-size:1.5rem;
     font-weight: 900;
-    top:2rem;
+    /* top:2rem; */
+    grid-row: -3/-4;
 }
 .skills .frontend .css{
     position:relative;
@@ -320,13 +393,14 @@ section{
     font-family: 'Arial Narrow Bold', sans-serif;
     font-weight: 900;
     color:burlywood;
-    font-size:2rem;
-    top:0.5rem;
-    left:0.4rem;
-    
+    font-size:1.6rem;
+    /* top:0.5rem; */
+    /* left:0.4rem; */
+    grid-row: 7/8;
 
 }
 .skills .frontend .javascript{
+    display: grid;
     position:relative;
     background-color:transparent;
     text-align: center;
@@ -336,8 +410,10 @@ section{
     font-style: italic;
     color:burlywood;
     font-size:2rem;
-    top:0.9rem;
-    left:0.3rem;
+    top:-0.9rem;
+    /* left:0.3rem; */
+    grid-row: 3/4;
+    height: 20vh;
 }
 .html p{
     align-items: center;
@@ -377,13 +453,13 @@ section{
     height: 18vh;
     transform: rotate3d(0, 6, -1, 75deg);
 }
-.backend {
-    font-size: 2rem;
+/* .backend {
+    font-size: 5rem;
     color:var(--link-color);
     letter-spacing:1rem;
     background-color: transparent;
     color:blue;
-}
+} */
 .about{
     position: relative;
     display: flex;
